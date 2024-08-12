@@ -9,7 +9,7 @@ namespace Core.Security.Entities
 {
     public class EmailAuthenticator : Entity
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public string? ActivationKey { get; set; }
         public bool IsVerified { get; set; }
 
@@ -19,7 +19,7 @@ namespace Core.Security.Entities
         {
         }
 
-        public EmailAuthenticator(int id, int userId, string? activationKey, bool isVerified) : this()
+        public EmailAuthenticator(Guid id, Guid userId, string? activationKey, bool isVerified) : this()
         {
             Id = id;
             UserId = userId;

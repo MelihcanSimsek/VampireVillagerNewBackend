@@ -4,7 +4,7 @@ namespace Core.Security.Entities
 {
     public class RefreshToken : Entity
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public string Token { get; set; }
         public DateTime Expires { get; set; }
         public DateTime Created { get; set; }
@@ -24,7 +24,7 @@ namespace Core.Security.Entities
         {
         }
 
-        public RefreshToken(int id, string token, DateTime expires, DateTime created, string createdByIp, DateTime? revoked,
+        public RefreshToken(Guid id, string token, DateTime expires, DateTime created, string createdByIp, DateTime? revoked,
                             string revokedByIp, string replacedByToken, string reasonRevoked)
         {
             Id = id;
