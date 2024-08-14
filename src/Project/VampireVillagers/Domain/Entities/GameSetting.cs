@@ -25,7 +25,7 @@ namespace Domain.Entities
         {
         }
 
-        public GameSetting(Guid id, Guid lobbyId, int nightTime, int dayTime, int vampireNumber, int priestNumber, int witchNumber, int vampireHunterNumber, int shapeshifterNumber, int transformingVampireNumber)
+        public GameSetting(Guid id, Guid lobbyId, int nightTime, int dayTime, int vampireNumber, int priestNumber, int witchNumber, int vampireHunterNumber, int shapeshifterNumber, int transformingVampireNumber):this()
         {
             Id = id;
             LobbyId = lobbyId;

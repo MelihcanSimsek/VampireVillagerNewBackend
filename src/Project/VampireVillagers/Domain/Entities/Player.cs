@@ -15,7 +15,7 @@ namespace Domain.Entities
         public virtual Lobby? Lobby { get; set; }
         public virtual User? User { get; set; }
 
-        public Player(Guid id,bool isOwner, bool liveState, int role, int skill, Guid userId, Guid lobbyId)
+        public Player(Guid id,bool isOwner, bool liveState, int role, int skill, Guid userId, Guid lobbyId):this()
         {
             Id = id;
             IsOwner = isOwner;

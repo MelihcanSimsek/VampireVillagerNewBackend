@@ -17,7 +17,7 @@ namespace Domain.Entities
         public virtual Lobby? Lobby { get; set; }
         public virtual Player? Player { get; set; }
 
-        public Chat(Guid id,string message, DateTime messageDate, Guid lobbyId, Guid playerId)
+        public Chat(Guid id,string message, DateTime messageDate, Guid lobbyId, Guid playerId):this()
         {
             Id = id;
             Message = message;

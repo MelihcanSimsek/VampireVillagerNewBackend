@@ -14,7 +14,7 @@ namespace Domain.Entities
         public virtual Player? Target { get; set; }
         public virtual GameSetting? GameSetting { get; set; }
 
-        public Vote(Guid id,int day, bool dayType, Guid playerId, Guid targetId, Guid gameSettingId)
+        public Vote(Guid id,int day, bool dayType, Guid playerId, Guid targetId, Guid gameSettingId):this()
         {
             Id = id;
             Day = day;

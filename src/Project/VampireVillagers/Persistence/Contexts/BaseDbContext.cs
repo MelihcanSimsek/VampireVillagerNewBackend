@@ -37,6 +37,8 @@ namespace Persistence.Contexts
             {
                 a.ToTable("Players").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.UserId).HasColumnName("UserId");
+                a.Property(p => p.LobbyId).HasColumnName("LobbyId");
                 a.Property(p => p.IsOwner).HasColumnName("IsOwner");
                 a.Property(p => p.Role).HasColumnName("Role");
                 a.Property(p => p.LiveState).HasColumnName("LiveState");
@@ -60,6 +62,8 @@ namespace Persistence.Contexts
             {
                 a.ToTable("Chats").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.LobbyId).HasColumnName("LobbyId");
+                a.Property(p => p.PlayerId).HasColumnName("PlayerId");
                 a.Property(p => p.Message).HasColumnName("Message");
                 a.Property(p => p.MessageDate).HasColumnName("MessageDate");
                 a.HasOne(p => p.Player);
@@ -70,6 +74,7 @@ namespace Persistence.Contexts
             {
                 a.ToTable("GameSettings").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.LobbyId).HasColumnName("LobbyId");
                 a.Property(p => p.NightTime).HasColumnName("NightTime");
                 a.Property(p => p.DayTime).HasColumnName("DayTime");
                 a.Property(p => p.VampireNumber).HasColumnName("VampireNumber");
@@ -82,20 +87,13 @@ namespace Persistence.Contexts
                 a.HasOne(p => p.Lobby);
             });
 
-            modelBuilder.Entity<Chat>(a =>
-            {
-                a.ToTable("Chats").HasKey(k => k.Id);
-                a.Property(p => p.Id).HasColumnName("Id");
-                a.Property(p => p.Message).HasColumnName("Message");
-                a.Property(p => p.MessageDate).HasColumnName("MessageDate");
-                a.HasOne(p => p.Player);
-                a.HasOne(p => p.Lobby);
-            });
-
             modelBuilder.Entity<Vote>(a =>
             {
                 a.ToTable("Votes").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.PlayerId).HasColumnName("PlayerId");
+                a.Property(p => p.GameSettingId).HasColumnName("GameSettingId");
+                a.Property(p => p.TargetId).HasColumnName("TargetId");
                 a.Property(p => p.Day).HasColumnName("Day");
                 a.Property(p => p.DayType).HasColumnName("DayType");
                 a.HasOne(p => p.Player);

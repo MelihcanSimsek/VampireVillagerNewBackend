@@ -20,7 +20,7 @@ namespace Domain.Entities
         {
         }
 
-        public Lobby(Guid id, string name, DateTime creationDate,bool hasPassword,string password)
+        public Lobby(Guid id, string name, DateTime creationDate,bool hasPassword,string password):this()
         {
             Id = id;
             Name = name;
