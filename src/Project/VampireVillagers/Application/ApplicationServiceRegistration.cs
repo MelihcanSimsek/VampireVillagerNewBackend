@@ -1,5 +1,9 @@
 ﻿using Application.Features.Auths.Rules;
+using Application.Features.Lobbies.Rules;
+using Application.Features.OperationClaims.Rules;
+using Application.Features.UserOperationClaims.Rules;
 using Application.Services.AuthService;
+using Application.Services.UserOperationClaimService;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
@@ -18,6 +22,9 @@ namespace Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
             services.AddScoped<AuthBusinessRules>();
+            services.AddScoped<LobbyBusinessRules>();
+            services.AddScoped<OperationClaimsBusinessRules>();
+            services.AddScoped<UserOperationClaimsBusinessRules>();
             
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -28,6 +35,7 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
             services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
 
 
             return services;

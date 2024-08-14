@@ -18,4 +18,9 @@
 		<ProjectReference Include="..\Domain\Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Features\UserOperationClaims\Models\" />
+	  <Folder Include="Features\UserOperationClaims\Queries\" />
+	</ItemGroup>
+
 </Project>

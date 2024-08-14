@@ -11,6 +11,8 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
+        public bool HasPassword { get; set; }
+        public string? Password { get; set; }
         public virtual ICollection<Player> Players { get; set; }
         public virtual ICollection<Chat> Chats { get; set; }
         public virtual ICollection<GameSetting> GameSettings { get; set; }
@@ -18,11 +20,13 @@ namespace Domain.Entities
         {
         }
 
-        public Lobby(Guid id, string name, DateTime creationDate)
+        public Lobby(Guid id, string name, DateTime creationDate,bool hasPassword,string password)
         {
             Id = id;
             Name = name;
             CreationDate = creationDate;
+            HasPassword = hasPassword;
+            Password = password;
         }
     }
 }

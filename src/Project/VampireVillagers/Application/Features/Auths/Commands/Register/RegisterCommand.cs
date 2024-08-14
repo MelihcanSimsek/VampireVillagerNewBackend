@@ -2,6 +2,7 @@
 using Application.Features.Auths.Rules;
 using Application.Services.AuthService;
 using Application.Services.Repositories;
+using Application.Services.UserOperationClaimService;
 using Core.Security.Dtos;
 using Core.Security.Entities;
 using Core.Security.Hashing;
@@ -25,12 +26,14 @@ namespace Application.Features.Auths.Commands.Register
             private readonly IUserRepository _userRepository;
             private readonly IAuthService _authService;
             private readonly AuthBusinessRules _authBusinessRules;
+            private readonly IUserOperationClaimService _userOperationClaimService;
 
-            public RegisterCommandHandler(IUserRepository userRepository, IAuthService authService, AuthBusinessRules authBusinessRules)
+            public RegisterCommandHandler(IUserRepository userRepository, IAuthService authService, AuthBusinessRules authBusinessRules, IUserOperationClaimService userOperationClaimService)
             {
                 _userRepository = userRepository;
                 _authService = authService;
                 _authBusinessRules = authBusinessRules;
+                _userOperationClaimService = userOperationClaimService;
             }
 
             public async Task<RegisteredDto> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -50,7 +53,7 @@ namespace Application.Features.Auths.Commands.Register
                 };
 
                 User createdUser = await _userRepository.AddAsync(newUser);
-
+                await _userOperationClaimService.AddStandartUserRole(createdUser);
                 AccessToken accessToken =await _authService.CreateAccessToken(createdUser);
                 RefreshToken createdRefreshToken = await _authService.CreateRefreshToken(createdUser, request.IpAddress);
                 RefreshToken addedRefreshToken = await _authService.AddRefreshToken(createdRefreshToken);
