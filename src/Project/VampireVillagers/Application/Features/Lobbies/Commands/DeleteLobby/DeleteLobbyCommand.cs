@@ -2,6 +2,7 @@
 using Application.Features.Lobbies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -12,9 +13,10 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Lobbies.Commands.DeleteLobby
 {
-    public class DeleteLobbyCommand:IRequest<DeletedLobbyDto>
+    public class DeleteLobbyCommand:IRequest<DeletedLobbyDto>,ISecuredRequest
     {
         public Guid Id { get; set; }
+        public string[] Roles { get; } = ["user"];
         public class DeleteLobbyCommandHandler : IRequestHandler<DeleteLobbyCommand, DeletedLobbyDto>
         {
             private readonly ILobbyRepository _lobbyRepository;

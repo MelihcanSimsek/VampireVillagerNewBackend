@@ -2,6 +2,7 @@
 using Application.Features.Lobbies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
 using Domain.Entities;
@@ -14,10 +15,10 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Lobbies.Queries.GetListPublicLobby
 {
-    public class GetListPublicLobbyQuery : IRequest<LobbyListModel>
+    public class GetListPublicLobbyQuery : IRequest<LobbyListModel>,ISecuredRequest
     {
         public PageRequest PageRequest { get; set; }
-
+        public string[] Roles { get; } = ["user"];
         public class GetListPublicLobbyQueryHandler : IRequestHandler<GetListPublicLobbyQuery, LobbyListModel>
         {
             private readonly ILobbyRepository _lobbyRepository;

@@ -8,7 +8,7 @@ namespace Application.Features.Lobbies.Commands.CreateLobby
         {
             RuleFor(p => p.Name).NotEmpty();
             RuleFor(p => p.CreationDate).NotEmpty();
-            RuleFor(p => p.HasPassword).NotEmpty();
+            RuleFor(p => p.HasPassword).NotNull();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Application.Features.Lobbies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -12,12 +13,13 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Lobbies.Commands.CreateLobby
 {
-    public class CreateLobbyCommand : IRequest<CreatedLobbyDto>
+    public class CreateLobbyCommand : IRequest<CreatedLobbyDto>, ISecuredRequest
     {
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public bool HasPassword { get; set; }
         public string Password { get; set; }
+        public string[] Roles { get; } = ["user"];
 
         public class CreateLobbyCommandHandler : IRequestHandler<CreateLobbyCommand, CreatedLobbyDto>
         {
