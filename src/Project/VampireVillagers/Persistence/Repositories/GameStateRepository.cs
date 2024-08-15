@@ -5,9 +5,9 @@ using Persistence.Contexts;
 
 namespace Persistence.Repositories
 {
-    public class ChatRepository : EfRepositoryBase<Chat, BaseDbContext>, IChatRepository
+    public class GameStateRepository : EfRepositoryBase<GameState, BaseDbContext>, IGameStateRepository
     {
-        public ChatRepository(BaseDbContext context) : base(context)
+        public GameStateRepository(BaseDbContext context) : base(context)
         {
         }
     }

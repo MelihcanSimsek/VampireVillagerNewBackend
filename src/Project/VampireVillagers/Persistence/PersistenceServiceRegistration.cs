@@ -30,6 +30,7 @@ namespace Persistence
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVoteRepository, VoteRepository>();
+            services.AddScoped<IGameStateRepository, GameStateRepository>();
 
             return services;
         }
