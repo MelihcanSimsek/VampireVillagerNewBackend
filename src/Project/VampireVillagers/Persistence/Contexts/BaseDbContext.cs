@@ -14,6 +14,7 @@ namespace Persistence.Contexts
         public DbSet<Lobby> Lobbies { get; set; }
         public DbSet<Vote> Votes { get; set; }
         public DbSet<GameSetting> GameSettings { get; set; }
+        public DbSet<GameState> GameStates { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
@@ -40,11 +41,11 @@ namespace Persistence.Contexts
                 a.Property(p => p.UserId).HasColumnName("UserId");
                 a.Property(p => p.LobbyId).HasColumnName("LobbyId");
                 a.Property(p => p.IsOwner).HasColumnName("IsOwner");
-                a.Property(p => p.Role).HasColumnName("Role");
-                a.Property(p => p.LiveState).HasColumnName("LiveState");
-                a.Property(p => p.Skill).HasColumnName("Skill");
                 a.HasOne(p => p.User);
                 a.HasOne(p => p.Lobby);
+                a.HasMany(p => p.Votes).WithOne(u=>u.Player).HasForeignKey(v=>v.PlayerId).OnDelete(DeleteBehavior.Restrict);
+                a.HasMany(p => p.VotesAsTarget).WithOne(u=>u.Target).HasForeignKey(v=>v.TargetId).OnDelete(DeleteBehavior.Restrict);
+                a.HasMany(p => p.GameStates);
             });
 
             modelBuilder.Entity<Lobby>(a =>
@@ -53,6 +54,8 @@ namespace Persistence.Contexts
                 a.Property(p => p.Id).HasColumnName("Id");
                 a.Property(p => p.Name).HasColumnName("Name");
                 a.Property(p => p.CreationDate).HasColumnName("CreationDate");
+                a.Property(p => p.HasPassword).HasColumnName("HasPassword");
+                a.Property(p => p.Password).HasColumnName("Password");
                 a.HasMany(p => p.Chats);
                 a.HasMany(p => p.Players);
                 a.HasMany(p => p.GameSettings);
@@ -75,6 +78,7 @@ namespace Persistence.Contexts
                 a.ToTable("GameSettings").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
                 a.Property(p => p.LobbyId).HasColumnName("LobbyId");
+                a.Property(p => p.CreationDate).HasColumnName("CreationDate");
                 a.Property(p => p.NightTime).HasColumnName("NightTime");
                 a.Property(p => p.DayTime).HasColumnName("DayTime");
                 a.Property(p => p.VampireNumber).HasColumnName("VampireNumber");
@@ -83,9 +87,25 @@ namespace Persistence.Contexts
                 a.Property(p => p.VampireHunterNumber).HasColumnName("VampireHunterNumber");
                 a.Property(p => p.ShapeshifterNumber).HasColumnName("ShapeshifterNumber");
                 a.Property(p => p.TransformingVampireNumber).HasColumnName("TransformingVampireNumber");
+                a.HasMany(p => p.GameStates);
                 a.HasMany(p => p.Votes);
                 a.HasOne(p => p.Lobby);
             });
+
+
+            modelBuilder.Entity<GameState>(a =>
+            {
+                a.ToTable("GameStates").HasKey(k => k.Id);
+                a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.PlayerId).HasColumnName("PlayerId");
+                a.Property(p => p.GameSettingId).HasColumnName("GameSettingId");
+                a.Property(p => p.LiveState).HasColumnName("LiveState");
+                a.Property(p => p.Role).HasColumnName("Role");
+                a.Property(p => p.Skill).HasColumnName("Skill");
+                a.HasOne(p => p.Player);
+                a.HasOne(p => p.GameSetting);
+            });
+
 
             modelBuilder.Entity<Vote>(a =>
             {
@@ -96,8 +116,8 @@ namespace Persistence.Contexts
                 a.Property(p => p.TargetId).HasColumnName("TargetId");
                 a.Property(p => p.Day).HasColumnName("Day");
                 a.Property(p => p.DayType).HasColumnName("DayType");
-                a.HasOne(p => p.Player);
-                a.HasOne(p => p.Target);
+                a.HasOne(p => p.Player).WithMany(p=>p.Votes).HasForeignKey(p=>p.PlayerId).OnDelete(DeleteBehavior.Restrict);
+                a.HasOne(p => p.Target).WithMany(p=>p.VotesAsTarget).HasForeignKey(p=>p.TargetId).OnDelete(DeleteBehavior.Restrict);
                 a.HasOne(p => p.GameSetting);
             });
 

@@ -19,6 +19,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Features\Players\Commands\CreatePlayer\" />
+	  <Folder Include="Features\Players\Commands\DeletePlayer\" />
+	  <Folder Include="Features\Players\Models\" />
+	  <Folder Include="Features\Players\Queries\" />
 	  <Folder Include="Features\UserOperationClaims\Models\" />
 	  <Folder Include="Features\UserOperationClaims\Queries\" />
 	</ItemGroup>

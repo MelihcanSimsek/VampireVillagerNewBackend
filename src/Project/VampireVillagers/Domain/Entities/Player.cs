@@ -7,21 +7,16 @@ namespace Domain.Entities
     {
 
         public bool IsOwner { get; set; }
-        public bool LiveState { get; set; }
-        public int Role { get; set; }
-        public int Skill { get; set; }
         public Guid UserId { get; set; }
         public Guid LobbyId { get; set; }
         public virtual Lobby? Lobby { get; set; }
         public virtual User? User { get; set; }
-
-        public Player(Guid id,bool isOwner, bool liveState, int role, int skill, Guid userId, Guid lobbyId):this()
+        public virtual ICollection<GameState> GameStates { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
+        public virtual ICollection<Vote> VotesAsTarget { get; set; }
+        public Player(bool isOwner, Guid userId, Guid lobbyId):this()
         {
-            Id = id;
             IsOwner = isOwner;
-            LiveState = liveState;
-            Role = role;
-            Skill = skill;
             UserId = userId;
             LobbyId = lobbyId;
         }

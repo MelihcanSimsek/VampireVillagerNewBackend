@@ -9,6 +9,7 @@ namespace Domain.Entities
 {
     public class GameSetting:Entity
     {
+        public DateTime CreationDate { get; set; }    
         public int NightTime { get; set; }
         public int DayTime { get; set; }
         public int VampireNumber { get; set; }
@@ -19,16 +20,16 @@ namespace Domain.Entities
         public int TransformingVampireNumber { get; set; }
         public Guid LobbyId { get; set; }
         public virtual Lobby? Lobby { get; set; }
+        public virtual ICollection<GameState> GameStates { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }
 
         public GameSetting()
         {
         }
 
-        public GameSetting(Guid id, Guid lobbyId, int nightTime, int dayTime, int vampireNumber, int priestNumber, int witchNumber, int vampireHunterNumber, int shapeshifterNumber, int transformingVampireNumber):this()
+        public GameSetting(DateTime creationDate, int nightTime, int dayTime, int vampireNumber, int priestNumber, int witchNumber, int vampireHunterNumber, int shapeshifterNumber, int transformingVampireNumber, Guid lobbyId):this()
         {
-            Id = id;
-            LobbyId = lobbyId;
+            CreationDate = creationDate;
             NightTime = nightTime;
             DayTime = dayTime;
             VampireNumber = vampireNumber;
@@ -37,6 +38,7 @@ namespace Domain.Entities
             VampireHunterNumber = vampireHunterNumber;
             ShapeshifterNumber = shapeshifterNumber;
             TransformingVampireNumber = transformingVampireNumber;
+            LobbyId = lobbyId;
         }
     }
 }
