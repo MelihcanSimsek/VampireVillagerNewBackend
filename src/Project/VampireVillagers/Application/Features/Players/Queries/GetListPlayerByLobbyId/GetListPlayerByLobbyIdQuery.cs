@@ -6,6 +6,7 @@ using Core.Application.Pipelines.Authorization;
 using Core.Persistence.Paging;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Players.Queries.GetListPlayerByLobbyId
 {
-    public class GetListPlayerByLobbyIdQuery:IRequest<PlayerListModel>,ISecuredRequest
+    public class GetListPlayerByLobbyIdQuery : IRequest<PlayerListModel>, ISecuredRequest
     {
         public Guid LobbyId { get; set; }
         public string[] Roles { get; } = ["user"];
@@ -34,7 +35,7 @@ namespace Application.Features.Players.Queries.GetListPlayerByLobbyId
                 int index = 0;
                 int playerAmount = 12;
 
-                IPaginate<Player> playerList = await _playerRepository.GetListAsync(p => p.LobbyId == request.LobbyId,index:index,size:playerAmount);
+                IPaginate<Player> playerList = await _playerRepository.GetListAsync(p => p.LobbyId == request.LobbyId, include: m => m.Include(c => c.User), index: index, size: playerAmount);
 
                 PlayerListModel mappedModel = _mapper.Map<PlayerListModel>(playerList);
 
