@@ -11,6 +11,12 @@ namespace Application.Services.LobbyService
     public class LobbyManager : ILobbyService
     {
         private readonly ILobbyRepository _lobbyRepository;
+
+        public LobbyManager(ILobbyRepository lobbyRepository)
+        {
+            _lobbyRepository = lobbyRepository;
+        }
+
         public async Task<Lobby> GetLobbyById(Guid id)
         {
             Lobby? lobby = await _lobbyRepository.GetAsync(p => p.Id == id);
