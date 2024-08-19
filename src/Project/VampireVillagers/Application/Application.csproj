@@ -19,6 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Features\GameSettings\Models\" />
 	  <Folder Include="Features\UserOperationClaims\Models\" />
 	  <Folder Include="Features\UserOperationClaims\Queries\" />
 	</ItemGroup>

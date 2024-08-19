@@ -1,5 +1,6 @@
 ﻿using Application.Features.Auths.Rules;
 using Application.Features.Chats.Rules;
+using Application.Features.GameSettings.Rules;
 using Application.Features.Lobbies.Rules;
 using Application.Features.OperationClaims.Rules;
 using Application.Features.Players.Rules;
@@ -33,6 +34,7 @@ namespace Application
             services.AddScoped<UserOperationClaimsBusinessRules>();
             services.AddScoped<PlayerBusinessRules>();
             services.AddScoped<ChatBusinessRules>();
+            services.AddScoped<GameSettingBusinessRules>();
             
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

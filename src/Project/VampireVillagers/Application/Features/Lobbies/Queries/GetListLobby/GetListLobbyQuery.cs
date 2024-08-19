@@ -3,6 +3,7 @@ using Application.Features.Lobbies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Caching;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
 using Domain.Entities;
