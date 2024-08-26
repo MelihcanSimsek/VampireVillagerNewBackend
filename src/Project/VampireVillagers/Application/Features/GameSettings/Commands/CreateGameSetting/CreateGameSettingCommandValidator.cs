@@ -16,8 +16,8 @@ namespace Application.Features.GameSettings.Commands.CreateGameSetting
             RuleFor(p => p.WitchNumber).NotNull();
             RuleFor(p => p.VampireNumber).NotNull();
             RuleFor(p => p.PriestNumber).NotNull();
-            RuleFor(p => p.ShapeshifterNumber).NotNull();
-            RuleFor(p => p.TransformingVampireNumber).NotNull();
+            RuleFor(p => p.ShapeshifterState).NotNull();
+            RuleFor(p => p.TransformerState).NotNull();
             RuleFor(p => p.VampireHunterNumber).NotNull();
             RuleFor(p => p.DayTime).NotNull();
             RuleFor(p => p.NightTime).NotNull();

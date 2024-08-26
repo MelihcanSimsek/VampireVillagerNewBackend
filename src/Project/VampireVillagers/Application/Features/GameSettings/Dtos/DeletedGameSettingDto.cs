@@ -17,7 +17,7 @@ namespace Application.Features.GameSettings.Dtos
         public int PriestNumber { get; set; }
         public int WitchNumber { get; set; }
         public int VampireHunterNumber { get; set; }
-        public int ShapeshifterNumber { get; set; }
-        public int TransformingVampireNumber { get; set; }
+        public bool ShapeshifterState { get; set; }
+        public bool TransformerState { get; set; }
     }
 }

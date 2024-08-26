@@ -16,8 +16,8 @@ namespace Domain.Entities
         public int PriestNumber { get; set; }
         public int WitchNumber { get; set; }
         public int VampireHunterNumber { get; set; }
-        public int ShapeshifterNumber { get; set; }
-        public int TransformingVampireNumber { get; set; }
+        public bool ShapeshifterState { get; set; }
+        public bool TransformerState { get; set; }
         public Guid LobbyId { get; set; }
         public virtual Lobby? Lobby { get; set; }
         public virtual ICollection<GameState> GameStates { get; set; }
@@ -27,8 +27,9 @@ namespace Domain.Entities
         {
         }
 
-        public GameSetting(DateTime creationDate, int nightTime, int dayTime, int vampireNumber, int priestNumber, int witchNumber, int vampireHunterNumber, int shapeshifterNumber, int transformingVampireNumber, Guid lobbyId):this()
+        public GameSetting(Guid id,DateTime creationDate, int nightTime, int dayTime, int vampireNumber, int priestNumber, int witchNumber, int vampireHunterNumber, bool shapeshifterState, bool transformerState, Guid lobbyId)
         {
+            Id = id;
             CreationDate = creationDate;
             NightTime = nightTime;
             DayTime = dayTime;
@@ -36,8 +37,8 @@ namespace Domain.Entities
             PriestNumber = priestNumber;
             WitchNumber = witchNumber;
             VampireHunterNumber = vampireHunterNumber;
-            ShapeshifterNumber = shapeshifterNumber;
-            TransformingVampireNumber = transformingVampireNumber;
+            ShapeshifterState = shapeshifterState;
+            TransformerState = transformerState;
             LobbyId = lobbyId;
         }
     }

@@ -1,5 +1,7 @@
 ﻿using Application.Features.GameSettings.Dtos;
 using Application.Features.GameSettings.Rules;
+using Application.Services.GameSettingService;
+using Application.Services.GameStateService;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Authorization;
@@ -23,8 +25,8 @@ namespace Application.Features.GameSettings.Commands.CreateGameSetting
         public int PriestNumber { get; set; }
         public int WitchNumber { get; set; }
         public int VampireHunterNumber { get; set; }
-        public int ShapeshifterNumber { get; set; }
-        public int TransformingVampireNumber { get; set; }
+        public bool ShapeshifterState { get; set; }
+        public bool TransformerState { get; set; }
         public string[] Roles { get; } = ["user"];
 
 
@@ -32,11 +34,14 @@ namespace Application.Features.GameSettings.Commands.CreateGameSetting
         {
             private readonly IGameSettingRepository _gameSettingRepository;
             private readonly IMapper _mapper;
+            private readonly IGameStateService _gameStateService;
             private readonly GameSettingBusinessRules _gameSettingBusinessRules;
-            public CreateGameSettingCommandHandler(IGameSettingRepository gameSettingRepository, IMapper mapper, GameSettingBusinessRules gameSettingBusinessRules)
+
+            public CreateGameSettingCommandHandler(IGameSettingRepository gameSettingRepository, IMapper mapper, IGameStateService gameStateService, GameSettingBusinessRules gameSettingBusinessRules)
             {
                 _gameSettingRepository = gameSettingRepository;
                 _mapper = mapper;
+                _gameStateService = gameStateService;
                 _gameSettingBusinessRules = gameSettingBusinessRules;
             }
 
@@ -47,6 +52,8 @@ namespace Application.Features.GameSettings.Commands.CreateGameSetting
                 GameSetting gameSetting = _mapper.Map<GameSetting>(request);
                 GameSetting addedGameSetting =await _gameSettingRepository.AddAsync(gameSetting);
                 CreatedGameSettingDto createdGameSettingDto = _mapper.Map<CreatedGameSettingDto>(addedGameSetting);
+
+                await _gameStateService.StartGame(addedGameSetting);
                 return createdGameSettingDto;
             }
         }

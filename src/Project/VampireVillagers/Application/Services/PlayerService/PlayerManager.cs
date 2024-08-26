@@ -17,6 +17,12 @@ namespace Application.Services.PlayerService
             _playerRepository = playerRepository;
         }
 
+        public async Task<List<Player>> GetAllPlayerByLobbyId(Guid lobbyId)
+        {
+            List<Player> players = (await _playerRepository.GetListAsync(p => p.LobbyId == lobbyId)).Items.ToList();
+            return players;
+        }
+
         public async Task<Player> GetPlayerById(Guid id)
         {
             Player? player = await _playerRepository.GetAsync(p => p.Id == id);

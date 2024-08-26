@@ -85,8 +85,8 @@ namespace Persistence.Contexts
                 a.Property(p => p.PriestNumber).HasColumnName("PriestNumber");
                 a.Property(p => p.WitchNumber).HasColumnName("WitchNumber");
                 a.Property(p => p.VampireHunterNumber).HasColumnName("VampireHunterNumber");
-                a.Property(p => p.ShapeshifterNumber).HasColumnName("ShapeshifterNumber");
-                a.Property(p => p.TransformingVampireNumber).HasColumnName("TransformingVampireNumber");
+                a.Property(p => p.ShapeshifterState).HasColumnName("ShapeshifterNumber");
+                a.Property(p => p.TransformerState).HasColumnName("TransformingVampireNumber");
                 a.HasMany(p => p.GameStates);
                 a.HasMany(p => p.Votes);
                 a.HasOne(p => p.Lobby);

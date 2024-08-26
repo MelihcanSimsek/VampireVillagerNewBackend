@@ -15,7 +15,6 @@ namespace Application.Features.GameSettings.Queries.GetGameSettingByLobbyId
     public class GetGameSettingByLobbyIdQuery:IRequest<GetGameSettingByLobbyIdDto>,ISecuredRequest
     {
         public Guid LobbyId { get; set; }
-
         public string[] Roles { get; } = ["user"];
 
         public class GetGameSettingByLobbyIdQueryHandler : IRequestHandler<GetGameSettingByLobbyIdQuery, GetGameSettingByLobbyIdDto>

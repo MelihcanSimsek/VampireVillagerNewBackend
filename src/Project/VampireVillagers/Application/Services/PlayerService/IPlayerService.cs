@@ -10,5 +10,6 @@ namespace Application.Services.PlayerService
     public interface IPlayerService
     {
         Task<Player> GetPlayerById(Guid id);
+        Task<List<Player>> GetAllPlayerByLobbyId(Guid lobbyId);
     }
 }
