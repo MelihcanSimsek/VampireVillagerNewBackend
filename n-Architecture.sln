@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "src\cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "src\corePackages\Core.Security\Core.Security.csproj", "{67C57926-67FF-4B1A-B10F-62C0714F923A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{735A5371-A85D-4B5B-97CC-CF36831956FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{735A5371-A85D-4B5B-97CC-CF36831956FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VampireVillagers", "VampireVillagers", "{23E675DF-BA6C-4521-9D9E-A929940A444C}"
 EndProject
@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\Project\Vampi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E73363D4-F648-495E-ABEE-B63E93E34B6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VampireVillagers.Application.UnitTests", "VampireVillagers.Application.UnitTests\VampireVillagers.Application.UnitTests.csproj", "{6119F426-98B3-454B-A3FD-F5DC7733C608}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VampireVillagers.Application.UnitTests", "src\Project\Test\VampireVillagers.Application.UnitTests\VampireVillagers.Application.UnitTests.csproj", "{6119F426-98B3-454B-A3FD-F5DC7733C608}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
