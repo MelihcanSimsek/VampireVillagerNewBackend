@@ -12,13 +12,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Lobbies.Profiles
 {
-    public class MappingProfiles:Profile
+    public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
-            CreateMap<CreateLobbyCommand, Lobby>().ReverseMap();
-            CreateMap<Lobby, CreatedLobbyDto>().ReverseMap();
+            CreateMap<CreateLobbyCommand, Lobby>()
+                  .ForMember(dest => dest.Players, opt => opt.Ignore())
+                  .ForMember(dest => dest.Chats, opt => opt.Ignore())
+                  .ForMember(dest => dest.GameSettings, opt => opt.Ignore())
+                  .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+            CreateMap<Lobby, CreatedLobbyDto>().ReverseMap();
             CreateMap<Lobby, DeletedLobbyDto>().ReverseMap();
 
             CreateMap<Lobby, LobbyListDto>().ReverseMap();

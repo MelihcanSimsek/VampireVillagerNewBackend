@@ -14,6 +14,7 @@ using Application.Services.OperationClaimService;
 using Application.Services.PlayerService;
 using Application.Services.UserOperationClaimService;
 using Application.Services.UserService;
+using Application.Services.VoteService;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
@@ -58,6 +59,7 @@ namespace Application
             services.AddScoped<ILobbyService, LobbyManager>();
             services.AddScoped<IPlayerService, PlayerManager>();
             services.AddScoped<IGameSettingService, GameSettingManager>();
+            services.AddScoped<IVoteService, VoteManager>();
 
 
             return services;

@@ -48,8 +48,9 @@ namespace Application.Features.GameSettings.Commands.CreateGameSetting
             public async Task<CreatedGameSettingDto> Handle(CreateGameSettingCommand request, CancellationToken cancellationToken)
             {
                 await _gameSettingBusinessRules.LobbyShouldBeExistsWhenGameSettingAdded(request.LobbyId);
-
                 GameSetting gameSetting = _mapper.Map<GameSetting>(request);
+                await _gameSettingBusinessRules.CheckPlayerNumberIsEnoughForStartingGame(gameSetting);
+                
                 GameSetting addedGameSetting =await _gameSettingRepository.AddAsync(gameSetting);
                 CreatedGameSettingDto createdGameSettingDto = _mapper.Map<CreatedGameSettingDto>(addedGameSetting);
 

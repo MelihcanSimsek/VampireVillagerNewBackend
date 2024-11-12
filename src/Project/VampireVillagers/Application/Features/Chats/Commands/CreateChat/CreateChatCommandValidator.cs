@@ -14,7 +14,8 @@ namespace Application.Features.Chats.Commands.CreateChat
             RuleFor(p => p.PlayerId).NotEmpty();
             RuleFor(p => p.LobbyId).NotEmpty();
             RuleFor(p => p.Message).NotEmpty();
-            RuleFor(p => p.MessageDate).NotNull();
+            RuleFor(p => p.MessageDate)
+           .GreaterThan(DateTime.MinValue).WithMessage("MessageDate must be a valid date.");
         }
     }
 }

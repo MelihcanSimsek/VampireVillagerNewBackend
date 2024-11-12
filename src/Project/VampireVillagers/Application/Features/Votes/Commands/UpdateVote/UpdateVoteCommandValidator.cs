@@ -14,7 +14,6 @@ namespace Application.Features.Votes.Commands.UpdateVote
             RuleFor(p => p.Day).NotNull();
             RuleFor(p => p.DayType).NotNull();
             RuleFor(p => p.PlayerId).NotEmpty();
-            RuleFor(p => p.TargetId).NotEmpty();
             RuleFor(p => p.GameSettingId).NotEmpty();
         }
     }

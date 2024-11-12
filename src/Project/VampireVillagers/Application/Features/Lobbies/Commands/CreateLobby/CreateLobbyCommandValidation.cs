@@ -7,8 +7,7 @@ namespace Application.Features.Lobbies.Commands.CreateLobby
         public CreateLobbyCommandValidation()
         {
             RuleFor(p => p.Name).NotEmpty();
-            RuleFor(p => p.CreationDate).NotEmpty();
-            RuleFor(p => p.HasPassword).NotNull();
+            RuleFor(p => p.CreationDate).GreaterThan(DateTime.MinValue).WithMessage("CreationDate must be a valid date.");
         }
     }
 }

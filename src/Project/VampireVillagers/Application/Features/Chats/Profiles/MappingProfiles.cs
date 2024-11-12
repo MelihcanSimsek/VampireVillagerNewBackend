@@ -16,7 +16,11 @@ namespace Application.Features.Chats.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Chat, CreateChatCommand>().ReverseMap();
+            CreateMap<CreateChatCommand, Chat>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Lobby, opt => opt.Ignore())
+                .ForMember(dest => dest.Player, opt => opt.Ignore());
+
             CreateMap<Chat, CreatedChatDto>().ReverseMap();
             CreateMap<Chat, DeletedChatDto>().ReverseMap();
 

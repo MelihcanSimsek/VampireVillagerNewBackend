@@ -1,5 +1,6 @@
 ﻿using Application.Features.GameSettings.Constants;
 using Application.Services.LobbyService;
+using Application.Services.PlayerService;
 using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
@@ -13,13 +14,15 @@ namespace Application.Features.GameSettings.Rules
 {
     public class GameSettingBusinessRules
     {
-        private IGameSettingRepository _gameSettingRepository;
-        private ILobbyService _lobbyService;
+        private readonly IGameSettingRepository _gameSettingRepository;
+        private readonly ILobbyService _lobbyService;
+        private readonly IPlayerService _playerService;
 
-        public GameSettingBusinessRules(IGameSettingRepository gameSettingRepository, ILobbyService lobbyService)
+        public GameSettingBusinessRules(IGameSettingRepository gameSettingRepository, ILobbyService lobbyService, IPlayerService playerService)
         {
             _gameSettingRepository = gameSettingRepository;
             _lobbyService = lobbyService;
+            _playerService = playerService;
         }
 
         public async Task LobbyShouldBeExistsWhenGameSettingAdded(Guid lobbyId)
@@ -32,6 +35,14 @@ namespace Application.Features.GameSettings.Rules
         {
             GameSetting? gameSetting = await _gameSettingRepository.GetAsync(p => p.Id == id);
             if (gameSetting == null) throw new BusinessException(Messages.GameSettingNotFoundWhenDeleting);
+        }
+
+        public async Task CheckPlayerNumberIsEnoughForStartingGame(GameSetting gameSetting)
+        {
+            int minVillagerNumber = 1;
+            int minPlayerNumberForStartingGame = gameSetting.VampireNumber + gameSetting.PriestNumber + gameSetting.WitchNumber + gameSetting.VampireHunterNumber + minVillagerNumber;
+            List<Player> players = await _playerService.GetAllPlayerByLobbyId(gameSetting.LobbyId);
+            if (minPlayerNumberForStartingGame > players.Count) throw new BusinessException(Messages.NotEnoughPlayerForStartingGame);
         }
     }
 }

@@ -23,15 +23,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{73
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VampireVillagers", "VampireVillagers", "{23E675DF-BA6C-4521-9D9E-A929940A444C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Project\VampireVillagers\Application\Application.csproj", "{76E64B2B-B5DB-4B67-8C08-3044A36D94E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Project\VampireVillagers\Application\Application.csproj", "{76E64B2B-B5DB-4B67-8C08-3044A36D94E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Project\VampireVillagers\Domain\Domain.csproj", "{02A04C81-694C-496B-966C-9D7A3AC8486D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Project\VampireVillagers\Domain\Domain.csproj", "{02A04C81-694C-496B-966C-9D7A3AC8486D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Project\VampireVillagers\Persistence\Persistence.csproj", "{0282C273-3D5B-431E-98C2-36CDEB1467B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Project\VampireVillagers\Persistence\Persistence.csproj", "{0282C273-3D5B-431E-98C2-36CDEB1467B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Project\VampireVillagers\Infrastructure\Infrastructure.csproj", "{76BCCD7C-F12D-4B40-B1F6-B28DD7C1C424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Project\VampireVillagers\Infrastructure\Infrastructure.csproj", "{76BCCD7C-F12D-4B40-B1F6-B28DD7C1C424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\Project\VampireVillagers\WebAPI\WebAPI.csproj", "{28AF7084-E272-4252-B1E5-009C0A615B6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\Project\VampireVillagers\WebAPI\WebAPI.csproj", "{28AF7084-E272-4252-B1E5-009C0A615B6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E73363D4-F648-495E-ABEE-B63E93E34B6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VampireVillagers.Application.UnitTests", "VampireVillagers.Application.UnitTests\VampireVillagers.Application.UnitTests.csproj", "{6119F426-98B3-454B-A3FD-F5DC7733C608}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,10 @@ Global
 		{28AF7084-E272-4252-B1E5-009C0A615B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28AF7084-E272-4252-B1E5-009C0A615B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28AF7084-E272-4252-B1E5-009C0A615B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6119F426-98B3-454B-A3FD-F5DC7733C608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6119F426-98B3-454B-A3FD-F5DC7733C608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6119F426-98B3-454B-A3FD-F5DC7733C608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6119F426-98B3-454B-A3FD-F5DC7733C608}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +110,8 @@ Global
 		{0282C273-3D5B-431E-98C2-36CDEB1467B0} = {23E675DF-BA6C-4521-9D9E-A929940A444C}
 		{76BCCD7C-F12D-4B40-B1F6-B28DD7C1C424} = {23E675DF-BA6C-4521-9D9E-A929940A444C}
 		{28AF7084-E272-4252-B1E5-009C0A615B6B} = {23E675DF-BA6C-4521-9D9E-A929940A444C}
+		{E73363D4-F648-495E-ABEE-B63E93E34B6C} = {735A5371-A85D-4B5B-97CC-CF36831956FA}
+		{6119F426-98B3-454B-A3FD-F5DC7733C608} = {E73363D4-F648-495E-ABEE-B63E93E34B6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {765F58DA-7AA6-430A-AF5B-809373E1BFB9}
